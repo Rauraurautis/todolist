@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  
+ 
 }
 
 button, input[type="submit"] {
@@ -8,28 +8,31 @@ button, input[type="submit"] {
   font-weight: bold;
 }
 
+.container {
+  padding: 5rem;
+  width: 100vw;
+  height: 100vh;
+  
+}
+
 .add-todo {
-  margin-left: auto;
-  margin-right: auto;
-  width: 500px;
-  padding: 1rem;
+
+width: 740px;
+height: 500px;
 }
 
 .add-todo form {
   display: flex;
-  width: 500px;
+  width: 100%;
   border: 2px solid grey;
   padding: 1rem;
-  gap: 3px;
+  gap: 6px;
 }
 
-table {
+.table-container {
   width: 300px;
-  margin-top: 3rem;
   border: 2px solid black;
   border-radius: 5px;
-  margin-left: auto;
-  margin-right: auto;
   text-align: center;
 }
 
@@ -40,4 +43,5 @@ table th {
 table td {
   border-bottom: 1px solid rgb(236, 236, 236);
 }
+
 

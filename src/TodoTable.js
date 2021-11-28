@@ -1,23 +1,38 @@
+
 import React from 'react'
+import { AgGridReact } from 'ag-grid-react';
 
-export default function TodoTable({deleteTodo, todos}) {
+import 'ag-grid-community/dist/styles/ag-grid.css';
+import 'ag-grid-community/dist/styles/ag-theme-material.css';
+
+export default function TodoTable({ deleteTodo, todos, gridRef }) {
+
+    const columns = [
+        { headerName: "Description", field: "description", sortable: true, filter: true, floatingFilter: true, animateRows: true },
+        { headerName: "Date", field: "date", sortable: true, filter: true, floatingFilter: true, animateRows: true },
+        {
+            headerName: "Priority", field: "priority", sortable: true, filter: true, floatingFilter: true, animateRows: true,
+            cellStyle: params => params.value === "High" ? { color: "red" } : { color: "black" }
+        }
+    ]
+
+
+
+
+
     return (
-
-        <table>
-            <tbody>
-                <tr>
-                    <th>Date</th>
-                    <th>Description</th>
-                </tr>
-                {todos.map((todo, index) => {
-                    return <tr key={index}>
-                        <td>{todo.date}</td>
-                        <td>{todo.description}</td>
-                        <td onClick={() => deleteTodo(index)}><button>Delete</button></td>
-                    </tr>
-                })}
-            </tbody>
-        </table>
+        <div className="ag-theme-material" style={{ height: '700px', width: "600px", margin: 'auto' }}>
+            <AgGridReact
+                ref={gridRef}
+                onGridReady={params => {
+                    gridRef.current = params.api
+                    console.log(gridRef.current)
+                }}
+                rowSelection="single"
+                columnDefs={columns}
+                rowData={todos}
+            />
+        </div>
 
     )
 }
